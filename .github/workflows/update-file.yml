@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  update-file:
+  off:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Repository
@@ -14,7 +14,61 @@ jobs:
 
     - name: Update File
       run: |
-        echo "Contenu à écrire dans le fichier" > data.txt
+        echo "off" > data.txt
+        git config --global user.email "2zbgnk@gmail.com"
+        git config --global user.name "LaMaCourses"
+        git add data.txt
+        git commit -m "Mise à jour du fichier"
+
+        git push https://LaMaCourses:LABADENQUET2_SECRET@github.com/LaMaCourses/Labadenquet     
+      env:
+        GITHUB_TOKEN: ${{ secrets.LABADENQUET2_SECRET }}
+
+  on-sun:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Update File
+      run: |
+        echo "on-sun" > data.txt
+        git config --global user.email "2zbgnk@gmail.com"
+        git config --global user.name "LaMaCourses"
+        git add data.txt
+        git commit -m "Mise à jour du fichier"
+
+        git push https://LaMaCourses:LABADENQUET2_SECRET@github.com/LaMaCourses/Labadenquet     
+      env:
+        GITHUB_TOKEN: ${{ secrets.LABADENQUET2_SECRET }}
+
+  on-sun-hc:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Update File
+      run: |
+        echo "on-sun-hc" > data.txt
+        git config --global user.email "2zbgnk@gmail.com"
+        git config --global user.name "LaMaCourses"
+        git add data.txt
+        git commit -m "Mise à jour du fichier"
+
+        git push https://LaMaCourses:LABADENQUET2_SECRET@github.com/LaMaCourses/Labadenquet     
+      env:
+        GITHUB_TOKEN: ${{ secrets.LABADENQUET2_SECRET }}
+
+  on:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Update File
+      run: |
+        echo "on" > data.txt
         git config --global user.email "2zbgnk@gmail.com"
         git config --global user.name "LaMaCourses"
         git add data.txt
