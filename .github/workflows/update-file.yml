@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  off:
+  lbd-off:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Repository
@@ -25,7 +25,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.LABADENQUET2_SECRET }}
 
-  on-sun:
+  lbd-on-sun:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Repository
@@ -44,7 +44,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.LABADENQUET2_SECRET }}
 
-  on-sun-hc:
+  lbd-on-sun-hc:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Repository
@@ -63,7 +63,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.LABADENQUET2_SECRET }}
 
-  on:
+  lbd-on:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Repository
