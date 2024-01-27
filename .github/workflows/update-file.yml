@@ -14,10 +14,10 @@ jobs:
 
     - name: Update File
       run: |
-        echo "Contenu à écrire dans le fichier" > data/data.txt
+        echo "Contenu à écrire dans le fichier" > data.txt
         git config --global user.email "2zbgnk@gmail.com"
         git config --global user.name "LaMaCourses"
-        git add data/data.txt
+        git add data.txt
         git commit -m "Mise à jour du fichier"
 
         git push https://LaMaCourses:LABADENQUET2_SECRET@github.com/LaMaCourses/Labadenquet     
