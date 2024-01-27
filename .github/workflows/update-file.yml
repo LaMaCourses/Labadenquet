@@ -33,6 +33,7 @@ jobs:
 
     - name: Update File
       run: |
+        git pull
         echo "on-sun" > data.txt
         git config --global user.email "2zbgnk@gmail.com"
         git config --global user.name "LaMaCourses"
@@ -51,6 +52,7 @@ jobs:
 
     - name: Update File
       run: |
+        git pull
         echo "on-sun-hc" > data.txt
         git config --global user.email "2zbgnk@gmail.com"
         git config --global user.name "LaMaCourses"
@@ -69,6 +71,7 @@ jobs:
 
     - name: Update File
       run: |
+        git pull
         echo "on" > data.txt
         git config --global user.email "2zbgnk@gmail.com"
         git config --global user.name "LaMaCourses"
