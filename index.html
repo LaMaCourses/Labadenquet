@@ -9,27 +9,15 @@
 
   <h1>GitHub Actions Example</h1>
 
-  <button onclick="triggerGitHubAction_Off()">Off</button>
-  <button onclick="triggerGitHubAction_OnSun()">On sun</button>
-  <button onclick="triggerGitHubAction_OnSunHC()">On sun + HC</button>
-  <button onclick="triggerGitHubAction_On()">On</button>
+  <button onclick="triggerGitHubAction('off')">Off</button>
+  <button onclick="triggerGitHubAction('on-sun')">On sun</button>
+  <button onclick="triggerGitHubAction('on-sun-hc')">On sun + HC</button>
+  <button onclick="triggerGitHubAction('on')">On</button>
 
   <script>
-    function triggerGitHubAction_Off() {
+    function triggerGitHubAction_Off(ActionName) {
       // Pas de script côté client nécessaire, car l'action GitHub s'occupe de la mise à jour du fichier
-      alert('Mode OFF activé.');
-    }
-    
-    function triggerGitHubAction_OnSun() {
-      alert('Mode ON SUN activé.');
-    }
-    
-    function triggerGitHubAction_OnSunHC() {
-      alert('Mode ON SUN+HC activé.');
-    }
-    
-    function triggerGitHubAction_Off() {
-      alert('Mode ON activé.');
+      alert('Mode ${ActionName} activé.');
     }
   </script>
 
