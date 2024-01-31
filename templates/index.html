@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Votre application</title>
+</head>
+<body>
+    <h1>Application Web</h1>
+    <form action="/modifier_variable" method="post">
+        <button type="submit" name="bouton_presse" value="bouton1">Bouton 1</button>
+        <button type="submit" name="bouton_presse" value="bouton2">Bouton 2</button>
+    </form>
+    <button onclick="consulterVariable()">Consulter Variable</button>
+    <script>
+        function consulterVariable() {
+            fetch('/consulter_variable')
+                .then(response => response.json())
+                .then(data => alert('Variable actuelle : ' + data.variable));
+        }
+    </script>
+</body>
+</html>
