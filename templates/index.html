@@ -11,13 +11,27 @@
         <button type="submit" name="bouton" value="off">Off</button>
         <button type="submit" name="bouton" value="on">On</button>
     </form>
-    <button onclick="consulterVariable()">Consulter Variable</button>
+    <p id="variableValeur">Variable actuelle : En attente de la valeur...</p>
+
     <script>
-        function consulterVariable() {
+        // Fonction pour mettre à jour la valeur de la variable
+        function mettreAJourVariable(variableValue) {
+            document.getElementById('variableValeur').innerText = 'Variable actuelle : ' + variableValue;
+        }
+
+        // Fonction pour consulter la variable lors du chargement de la page
+        window.onload = function() {
             fetch('/consulter_variable')
                 .then(response => response.json())
-                .then(data => alert('Variable actuelle : ' + data.variable));
-        }
+                .then(data => mettreAJourVariable(data.variable));
+        };
+
+        // Vous pouvez également ajouter une mise à jour périodique si nécessaire
+        // setInterval(function() {
+        //     fetch('/consulter_variable')
+        //         .then(response => response.json())
+        //         .then(data => mettreAJourVariable(data.variable));
+        // }, 5000); // Mise à jour toutes les 5 secondes (exemple)
     </script>
 </body>
 </html>
