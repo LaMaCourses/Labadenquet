@@ -11,7 +11,7 @@ def index():
 def modifier_variable():
     global variable
     variable = request.form.get('bouton')
-    return jsonify({'success': True})
+    return render_template('index.html')
 
 @app.route('/consulter_variable', methods=['GET'])
 def consulter_variable():
