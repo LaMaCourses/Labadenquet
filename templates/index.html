@@ -14,7 +14,38 @@
         <button type="submit" name="bouton" value="on">On</button>
     </form>
     <p id="variableValeur">Mode actif : En attente de la valeur...</p>
+    <div id="data"></div>
 
+    <script>
+    // Fonction pour récupérer les données de l'API
+    function getData() {
+      // Créer une requête HTTP
+      var xhr = new XMLHttpRequest();
+      // Ouvrir la requête avec la méthode GET et l'URL de l'API
+      xhr.open("GET", "https://www.api-couleur-tempo.fr/api/jourTempo/today");
+      // Définir le type de réponse attendu en JSON
+      xhr.responseType = "json";
+      // Envoyer la requête
+      xhr.send();
+      // Quand la requête est terminée
+      xhr.onload = function() {
+        // Si le statut de la réponse est 200 (succès)
+        if (xhr.status == 200) {
+          // Récupérer la réponse en JSON
+          var data = xhr.response;
+          // Afficher les données dans le champ div
+          document.getElementById("data").innerHTML = JSON.stringify(data, null, 2);
+        } else {
+          // Sinon, afficher une erreur
+          document.getElementById("data").innerHTML = "Erreur: " + xhr.status;
+        }
+      };
+    }
+    
+    // Appeler la fonction getData au chargement de la page
+    window.onload = getData;
+    </script>
+    
     <script>
         // Fonction pour mettre à jour la valeur de la variable
         function mettreAJourVariable(variableValue) {
