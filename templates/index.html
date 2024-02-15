@@ -24,7 +24,8 @@
               // Récupérer la réponse en JSON
               var data = xhr.response;
               // Afficher les données dans le champ div
-              document.getElementById("data").innerHTML = JSON.stringify(data, null, 2);
+              //document.getElementById("data").innerHTML = JSON.stringify(data, null, 2);
+              document.getElementById("data").innerHTML = "<pre>" + JSON.stringify(data, null, 2) + "</pre>";
             } else {
               // Sinon, afficher une erreur
               document.getElementById("data").innerHTML = "Erreur: " + xhr.status;
