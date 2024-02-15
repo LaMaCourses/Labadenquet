@@ -4,18 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Labadenquet Ouebservice</title>
-</head>
-<body>
-    <h1>Mode</h1>
-    <form action="/modifier_variable" method="post">
-        <button type="submit" name="bouton" value="off">Off</button>
-        <button type="submit" name="bouton" value="solaire">Solaire</button>
-        <button type="submit" name="bouton" value="hc">HC</button>
-        <button type="submit" name="bouton" value="on">On</button>
-    </form>
-    <p id="variableValeur">Mode actif : En attente de la valeur...</p>
-    <div id="data"></div>
 
+    
     <script>
     // Fonction pour récupérer les données de l'API
     function getData() {
@@ -44,9 +34,7 @@
     
     // Appeler la fonction getData au chargement de la page
     window.onload = getData;
-    </script>
-    
-    <script>
+
         // Fonction pour mettre à jour la valeur de la variable
         function mettreAJourVariable(variableValue) {
             document.getElementById('variableValeur').innerText = 'Variable actuelle : ' + variableValue;
@@ -66,5 +54,16 @@
         //         .then(data => mettreAJourVariable(data.variable));
         // }, 5000); // Mise à jour toutes les 5 secondes (exemple)
     </script>
+</head>
+<body>
+    <h1>Mode</h1>
+    <form action="/modifier_variable" method="post">
+        <button type="submit" name="bouton" value="off">Off</button>
+        <button type="submit" name="bouton" value="solaire">Solaire</button>
+        <button type="submit" name="bouton" value="hc">HC</button>
+        <button type="submit" name="bouton" value="on">On</button>
+    </form>
+    <p id="variableValeur">Mode actif : En attente de la valeur...</p>
+    <div id="data"></div>
 </body>
 </html>
