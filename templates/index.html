@@ -54,7 +54,7 @@
               var today = xhr.response;
               // Afficher les données dans le champ div
               //document.getElementById("data").innerHTML = JSON.stringify(data, null, 2);
-              document.getElementById("today").innerHTML = "<pre>" + JSON.stringify(data, null, 2) + "</pre>";
+              document.getElementById("today").innerHTML = "<pre>" + JSON.stringify(today, null, 2) + "</pre>";
             } else {
               // Sinon, afficher une erreur
               document.getElementById("today").innerHTML = "Erreur: " + xhr.status;
@@ -79,7 +79,7 @@
               var tomorrow = xhr.response;
               // Afficher les données dans le champ div
               //document.getElementById("data").innerHTML = JSON.stringify(data, null, 2);
-              document.getElementById("tomorrow").innerHTML = "<pre>" + JSON.stringify(data, null, 2) + "</pre>";
+              document.getElementById("tomorrow").innerHTML = "<pre>" + JSON.stringify(tomorrow, null, 2) + "</pre>";
             } else {
               // Sinon, afficher une erreur
               document.getElementById("tomorrow").innerHTML = "Erreur: " + xhr.status;
