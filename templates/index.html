@@ -37,7 +37,7 @@
     
     <script>
     // Fonction pour récupérer les données de l'API
-        function getData() {
+        function getToday() {
           // Créer une requête HTTP
           var xhr = new XMLHttpRequest();
           // Ouvrir la requête avec la méthode GET et l'URL de l'API
@@ -51,26 +51,51 @@
             // Si le statut de la réponse est 200 (succès)
             if (xhr.status == 200) {
               // Récupérer la réponse en JSON
-              var data = xhr.response;
+              var today = xhr.response;
               // Afficher les données dans le champ div
               //document.getElementById("data").innerHTML = JSON.stringify(data, null, 2);
-              document.getElementById("data").innerHTML = "<pre>" + JSON.stringify(data, null, 2) + "</pre>";
+              document.getElementById("today").innerHTML = "<pre>" + JSON.stringify(data, null, 2) + "</pre>";
             } else {
               // Sinon, afficher une erreur
-              document.getElementById("data").innerHTML = "Erreur: " + xhr.status;
+              document.getElementById("today").innerHTML = "Erreur: " + xhr.status;
             }
           };
         }
 
+        function getTomorrow() {
+          // Créer une requête HTTP
+          var xhr = new XMLHttpRequest();
+          // Ouvrir la requête avec la méthode GET et l'URL de l'API
+          xhr.open("GET", "https://www.api-couleur-tempo.fr/api/jourTempo/tomorrow");
+          // Définir le type de réponse attendu en JSON
+          xhr.responseType = "json";
+          // Envoyer la requête
+          xhr.send();
+          // Quand la requête est terminée
+          xhr.onload = function() {
+            // Si le statut de la réponse est 200 (succès)
+            if (xhr.status == 200) {
+              // Récupérer la réponse en JSON
+              var tomorrow = xhr.response;
+              // Afficher les données dans le champ div
+              //document.getElementById("data").innerHTML = JSON.stringify(data, null, 2);
+              document.getElementById("tomorrow").innerHTML = "<pre>" + JSON.stringify(data, null, 2) + "</pre>";
+            } else {
+              // Sinon, afficher une erreur
+              document.getElementById("tomorrow").innerHTML = "Erreur: " + xhr.status;
+            }
+          };
+        }
 
         // Fonction pour mettre à jour la valeur de la variable
         function mettreAJourVariable(variableValue) {
-            document.getElementById('variableValeur').innerText = 'Variable actuelle : ' + variableValue;
+            document.getElementById('variableValeur').innerText = 'Mode actif : ' + variableValue;
         }
 
         // Fonction pour consulter la variable lors du chargement de la page
         window.onload = function() {
-            getData();
+            getToday();
+            getTomorrow();
             fetch('/consulter_variable')
                 .then(response => response.json())
                 .then(data => mettreAJourVariable(data.variable));
@@ -93,6 +118,7 @@
         <button type="submit" name="bouton" value="on">On</button>
     </form>
     <p id="variableValeur">Mode actif : En attente de la valeur...</p>
-    <div id="data"></div>
+    <div id="today"></div>
+    <div id="tomorrow"></div>
 </body>
 </html>
