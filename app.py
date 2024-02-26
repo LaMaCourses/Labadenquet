@@ -19,7 +19,7 @@ def modifier_variable():
 def consulter_variable():
     global variable
     lastping = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    return jsonify({'variable': variable,'lastping:lastping})
+    return jsonify({'variable': variable,'lastping':lastping})
 
 if __name__ == '__main__':
     app.run(debug=True)
