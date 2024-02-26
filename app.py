@@ -19,7 +19,7 @@ def modifier_variable():
 @app.route('/consulter_variable', methods=['GET'])
 def consulter_variable():
     global variable,lastping
-    lastping = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    lastping = datetime.now().strftime("%H:%M:%S le %d-%m-%Y ")
     return jsonify({'variable': variable,'lastping':lastping})
 
 if __name__ == '__main__':
