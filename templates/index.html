@@ -127,6 +127,10 @@
         function mettreAJourVariable(variableValue) {
             document.getElementById('variableValeur').innerText = 'Mode actif : ' + variableValue;
         }
+        function getLastPing(lastping) {
+            document.getElementById('pingValeur').innerText = 'Dernier signe de vie du RPi à ' + lastping;
+        }
+
 
         // Fonction pour consulter la variable lors du chargement de la page
         window.onload = function() {
@@ -135,6 +139,8 @@
             fetch('/consulter_variable')
                 .then(response => response.json())
                 .then(data => mettreAJourVariable(data.variable));
+                .then(data => getLastPing(data.lastping));
+
         };
 
         // Vous pouvez également ajouter une mise à jour périodique si nécessaire
@@ -154,6 +160,7 @@
         <button type="submit" name="bouton" value="on">On</button>
     </form>
     <p id="variableValeur">Mode actif : En attente de la valeur...</p>
+    <p id="pingValeur">Dernier signe de vie du RPi à ... en attente de la valeur...</p>
     <div class="container">
     <h1 class="text-center">Données de l'API Couleur Tempo</h1>
     <div id="today" class="p-3"></div>
