@@ -127,21 +127,41 @@
         function mettreAJourVariable(variableValue) {
             document.getElementById('variableValeur').innerText = 'Mode actif : ' + variableValue;
         }
-        function getLastPing(lastping) {
-            document.getElementById('pingValeur').innerText = 'Dernier signe de vie du RPi à ' + lastping;
+
+        function getLastPing() {
+            // Créer une requête HTTP
+            var xhr = new XMLHttpRequest();
+            // Ouvrir la requête avec la méthode GET et l'URL de la route /lastping
+            xhr.open("GET", "/lastping");
+            // Définir le type de réponse attendu en JSON
+            xhr.responseType = "json";
+            // Envoyer la requête
+            xhr.send();
+            // Quand la requête est terminée
+            xhr.onload = function() {
+            // Si le statut de la réponse est 200 (succès)
+                if (xhr.status == 200) {
+                    // Récupérer la réponse en JSON
+                    var lastpingData = xhr.response;
+                    // Afficher la valeur de lastping dans le champ correspondant
+                    document.getElementById("pingValeur").innerText = 'Dernier signe de vie du RPi à ' + lastpingData.lastping;
+                } else {
+                    // Sinon, afficher une erreur
+                    console.error("Erreur lors de la récupération de lastping: " + xhr.status);
+                }
+            };
         }
+
 
 
         // Fonction pour consulter la variable lors du chargement de la page
         window.onload = function() {
             getToday();
             getTomorrow();
-            fetch('/consulter_variable')
+            getLastPing();
+            fetch('/consulter_variable_from_oueb')
                 .then(response => response.json())
-                 .then(data => {
-                    mettreAJourVariable(data.variable);
-                    getLastPing(data.lastping);
-
+                 .then(data => {mettreAJourVariable(data.variable);
                 });
         };
 
