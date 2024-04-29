@@ -1,18 +1,19 @@
 from flask import Flask, render_template, request, jsonify
 from datetime import datetime
+from pytz import timezone
 
 app = Flask(__name__)
 
 
 def readData():
     with open("./data.txt","r") as f:
-        [variable,lastping] = f.readline().strip().split("/")
-    print(f"'{variable}' et '{lastping}'")
-    return variable,lastping
+        [variable,lastping,prod] = f.readline().strip().split("/")
+    #print(f"'{variable}' et '{lastping}'")
+    return variable,lastping,prod
 
-def writeData(variable,lastping):
+def writeData(variable,lastping,prod):
     with open("./data.txt","w") as f:
-        f.write(f"{variable}/{lastping}")
+        f.write(f"{variable}/{lastping}/{prod}")
 
 
 @app.route('/')
@@ -22,28 +23,29 @@ def index():
 @app.route('/modifier_variable', methods=['POST'])
 def modifier_variable():
     variable = request.form.get('bouton')
-    _,lastping = readData()
-    writeData(variable,lastping)
+    _,lastping,prod = readData()
+    writeData(variable,lastping,prod)
     return render_template('index.html')
 
 @app.route('/consulter_variable', methods=['GET'])
 def consulter_variable():
-    heure = (int(datetime.now().strftime("%H"))+1)%24
-    lastping = str(heure)+datetime.now().strftime(":%M:%S le %d-%m-%Y ")
-    variable,_ = readData()
-    writeData(variable,lastping)
+    prod = request.args.get('prod')
+    now = datetime.now().astimezone(timezone('Europe/Paris'))
+    lastping = now.strftime("%H:%M:%S le %d-%m-%Y ")
+    variable,_,_ = readData()
+    writeData(variable,lastping,prod)
     return jsonify({'variable': variable})
 
 @app.route('/consulter_variable_from_oueb', methods=['GET'])
 def consulter_variable_from_oueb():
-    variable,_ = readData()
+    variable,_,_ = readData()
     return jsonify({'variable': variable})
 
 
 @app.route('/lastping', methods=['GET'])
 def get_lastping():
-    _,lastping = readData()
-    return jsonify({'lastping': lastping})
+    _,lastping,prod = readData()
+    return jsonify({'lastping': lastping,'prod':prod})
 
 if __name__ == '__main__':
     app.run(debug=True)
